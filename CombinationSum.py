@@ -4,7 +4,7 @@ The same number may be chosen from candidates an unlimited number of times. Two 
 
 The test cases are generated such that the number of unique combinations that sum up to target is less than 150 combinations for the given input."""
 
-
+CASE-1:
 #INPUT
 candidates=[2,3,6,7]
 target=7
@@ -25,3 +25,29 @@ def dfs(i,cur,total):
   cur.pop()
   print("current list after poping",cur)
   dfs(i+1,cur,total)
+  
+  
+  CASE-2:
+If the same number cannot be chosen from candidates more than 1 time
+#INPUT:
+candidates=[2,3,6,7]
+target=7
+#OUTPUT:
+[[7]]
+#CODE:
+candidates=[2,3,5,7]
+target=7
+res=[]
+def dfs2(i,cur,total):
+  if total==target:
+    res.append(cur.copy())
+    return
+  if i>=len(candidates) or total>target:
+    return
+  cur.append(candidates[i])
+  print("currentlist1=",cur,"i=",i)
+  dfs2(i+1,cur,sum(cur))
+  print("current list before poping",cur,"i=",i)
+  cur.pop()
+  dfs2(i+1,cur,total)
+  
